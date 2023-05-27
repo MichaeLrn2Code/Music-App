@@ -31,10 +31,10 @@ export default function Home() {
       </Head>
 
       <h1 className="text-6xl text-primary font-bold mt-20">
-        Music <span className="text-important">App</span>
+        Music Search <span className="text-important">App</span>
       </h1>
-      <h2 className="text-active text-2xl mt-6">
-        Search music using the Shazam API
+      <h2 className="text-winered text-2xl mt-6">
+        Discover Music World &nbsp; &nbsp; Bring Music to Life
       </h2>
 
       <div className="mt-12 sm:mx-auto justify-center sm:w-full sm:flex">

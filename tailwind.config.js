@@ -15,7 +15,7 @@ module.exports = {
       important: "#c79e16",
       light: "#121212",
       emerald:"#059669",
-      tophit:"#4a2c04"
+      winered:"#b02a8c"
     },
   },
 
