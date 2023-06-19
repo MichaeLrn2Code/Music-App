@@ -39,6 +39,7 @@ export default function Home() {
 
       <div className="mt-12 sm:mx-auto justify-center sm:w-full sm:flex">
         <input
+          id="searchbox"
           type="text"
           className="block w-auto sm:w-1/3 border border-transparent rounded-md px-5 py-3 text-base text-background shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-active"
           placeholder="Search for a song or an artist"
@@ -47,6 +48,7 @@ export default function Home() {
 
         <div className="mt-4 sm:mt-0 sm:ml-3">
           <button
+            id="searchbtn"
             className="block w-full rounded-md px-5 py-3 bg-active hover:bg-emerald text-base font-medium text-primary focus:outline-none focus:ring-2 focus:ring-primary sm:px-10"
             onClick={() => getSearchResults()}
           >
@@ -80,33 +82,37 @@ export default function Home() {
                       <span className="mt-2 mb-4 max-w-xs text-sm text-secondary block">
                         {song.track.subtitle}
                       </span>
-                      <div><a
-                        className="mt-5 text-sm text-active"
-                        href={song.track.url} target="_blank"
-                      >
-                        Preview in Shazam
-                      </a></div>
                       <div>
-                      <a
-                        className="mt-5 text-sm text-active"
-                        href={song.track.hub.providers[0].actions[0].uri} target="_blank"
-                      >
-                        Preview in Spotify
-                      </a>
+                        <a
+                          className="mt-5 text-sm text-active"
+                          href={song.track.url}
+                          target="_blank"
+                        >
+                          Preview in Shazam
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          className="mt-5 text-sm text-active"
+                          href={song.track.hub.providers[0].actions[0].uri}
+                          target="_blank"
+                        >
+                          Preview in Spotify
+                        </a>
                       </div>
 
                       <div>
-                      <a
-                        className="mt-5 text-sm text-active"
-                        href={song.track.hub.options[0].actions[0].uri}
-                      target="_blank">
-                        Preview in Apple Music
-                      </a>
+                        <a
+                          className="mt-5 text-sm text-active"
+                          href={song.track.hub.options[0].actions[0].uri}
+                          target="_blank"
+                        >
+                          Preview in Apple Music
+                        </a>
                       </div>
                       {/* <span className="mt-2 mb-4 max-w-xs text-sm text-secondary block">
                         {song.track.hub}
                       </span> */}
-                      
                     </div>
                   </div>
                 </div>
