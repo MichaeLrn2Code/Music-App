@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function Home() {
-  const [term, setTerm] = useState(null);
+  const [term, setTerm] = useState("");
   const [response, setResponse] = useState(null);
 
   const getSearchResults = async () => {
@@ -12,8 +12,8 @@ export default function Home() {
         params: { term },
       });
       const { data } = res;
-      setResponse(data.tracks.hits);
-      // console.log(data.tracks.hits);
+      setResponse(data.result);
+      // console.log(data.result);
     } catch (error) {
       console.log(error);
     }
@@ -62,57 +62,43 @@ export default function Home() {
           <h3 className="text-secondary text-2xl">Search Results</h3>
           <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {response.map((song) => (
-              <div key={song.track.title} className="pt-6">
+              <div key={song.videoId} className="pt-6">
                 <div className="flow-root bg-light rounded-lg px-4 pb-8">
                   <div className="-mt-6">
                     <div className="flex items-center justify-center">
                       <span className="p-3 rounded-md shadow-lg">
                         <img
-                          src={song.track.images.coverart}
+                          src={
+                            song.thumbnail ||
+                            "https://via.placeholder.com/140?text=Music"
+                          }
                           width={140}
                           height={140}
-                          alt={song.track.title}
+                          alt={song.title}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src =
+                              "https://via.placeholder.com/140?text=Music";
+                          }}
                         />
                       </span>
                     </div>
                     <div className="text-center justify-center items-center">
                       <h3 className="mt-2 text-lg text-center font-medium text-primary tracking-tight">
-                        {song.track.title}
+                        {song.title}
                       </h3>
                       <span className="mt-2 mb-4 max-w-xs text-sm text-secondary block">
-                        {song.track.subtitle}
+                        {song.author}
                       </span>
                       <div>
                         <a
                           className="mt-5 text-sm text-active"
-                          href={song.track.url}
+                          href={`https://music.youtube.com/watch?v=${song.videoId}`}
                           target="_blank"
                         >
-                          Preview in Shazam
+                          Listen on YouTube Music
                         </a>
                       </div>
-                      <div>
-                        <a
-                          className="mt-5 text-sm text-active"
-                          href={song.track.hub.providers[0].actions[0].uri}
-                          target="_blank"
-                        >
-                          Preview in Spotify
-                        </a>
-                      </div>
-
-                      <div>
-                        <a
-                          className="mt-5 text-sm text-active"
-                          href={song.track.hub.options[0].actions[0].uri}
-                          target="_blank"
-                        >
-                          Preview in Apple Music
-                        </a>
-                      </div>
-                      {/* <span className="mt-2 mb-4 max-w-xs text-sm text-secondary block">
-                        {song.track.hub}
-                      </span> */}
                     </div>
                   </div>
                 </div>
